@@ -1,11 +1,12 @@
 import React from 'react'
+import { auth } from '../firebase/clientApp'
+import { GithubAuthProvider, getAuth } from 'firebase/auth'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import initFirebase from '../firebase/clientApp'
-import { GithubAuthProvider, getAuth } from 'firebase/auth'
 
-initFirebase()
+// initFirebase()
 
-const auth = getAuth()
+// const auth = getAuth()
 
 const uiConfig = {
   signInSuccessUrl: "/",

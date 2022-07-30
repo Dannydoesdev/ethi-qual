@@ -1,20 +1,6 @@
-import firebase from "firebase/app";
 import { getApps, initializeApp } from "firebase/app";
-// import { getAnalytics, logEvent } from "firebase/analytics";
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// import { applicationDefault } from 'firebase-admin/app';
-// import { getFirestore, collection, getDocs } from 'firebase/firestore';
-// import { getDatabase } from "@firebase/database";
-// import { getStorage } from "firebase/storage";
-
-// import { initializeApp, applicationDefault } from 'firebase-admin/app';
-// import "firebase/firestore";
-// import "firebase/functions";
-// import "firebase/storage";
-// import "firebase/messaging";
-// import "firebase/performance";
-// import "firebase/remote-config";
 
 
 const firebaseConfig = {
@@ -27,15 +13,17 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+let firebaseApp
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
-// export const db = getFirestore(app);
-// const realDB = getDatabase(app);
-// const storage = getStorage(app);
+if (!getApps().length) {
+  firebaseApp = initializeApp(firebaseConfig);
+  console.log('firebase initialized');
+}
+
+
 function initFirebase() {
   if (!getApps().length) {
-    initializeApp(firebaseConfig);
+    firebaseApp = initializeApp(firebaseConfig);
     // firebase.initializeApp(firebaseConfig);
     // if (typeof window !== "undefined") {
     // if ('measurementId' in firebaseConfig) {
@@ -43,10 +31,13 @@ function initFirebase() {
     // firebase.performance()
     }
     // }
-    // Initialize other firebase products here
   // }
   console.log('firebase initialized');
 }
+// initFirebase()
 
-// export default initFirebase;
+export const app = firebaseApp
+// const analytics = getAnalytics(app);
+export const auth = getAuth(app)
+
 export default initFirebase;
