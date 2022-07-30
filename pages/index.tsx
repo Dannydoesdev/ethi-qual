@@ -2,9 +2,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { initFirebase } from '../firebase/clientApp'
+// import initFirebase from '../firebase/clientApp'
 
-initFirebase()
+// initFirebase()
 
 const Home: NextPage = () => {
   return (
